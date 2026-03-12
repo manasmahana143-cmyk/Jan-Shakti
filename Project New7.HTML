@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan Shakti - Worker Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #27ae60;
+            --secondary: #2980b9; /* Blue for Call Button */
+            --accent: #f39c12;
+            --dark: #2c3e50;
+            --light: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-weight: bold; font-size: 1.6rem; color: var(--primary); text-transform: uppercase; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            max-width: 500px;
+            margin: 25px auto;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            border: none;
+            padding: 12px 20px;
+            flex-grow: 1;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        /* Categories */
+        .section-title { text-align: center; margin: 40px 0 20px; font-size: 1.8rem; }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cat-card {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .cat-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .cat-card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
+
+        /* Job Cards */
+        .job-list { padding: 20px; max-width: 800px; margin: 0 auto; }
+        
+        .job-card {
+            background: white;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 6px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .job-info h3 { margin: 0 0 10px 0; font-size: 1.3rem; }
+        .job-tag {
+            background: #e8f5e9;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 10px; }
+
+        .apply-btn, .call-btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .apply-btn { background: var(--primary); color: white; border: none; }
+        .call-btn { background: var(--secondary); color: white; }
+
+        .apply-btn:hover { background: #219150; }
+        .call-btn:hover { background: #1e608d; }
+
+        /* Registration Form Section */
+        .reg-section {
+            background: white;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .help-fab {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .job-card { flex-direction: column; align-items: stretch; text-align: center; }
+            .btn-group { flex-direction: column; margin-top: 20px; }
+            .job-info p { margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Jan Shakti</div>
+        <div>
+            <a href="#register" class="apply-btn">Register Now</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Kaam Dhundna Ab Aasaan!</h1>
+        <p>Ghar baithe kaam payein - Daily ya Full Time</p>
+        <div class="search-box">
+            <input type="text" placeholder="Apna Shehar Dalein (e.g. Mumbai)">
+            <button style="background:var(--primary); border:none; color:white; padding:0 25px; cursor:pointer; font-weight:bold;">Search</button>
+        </div>
+    </div>
+
+    <h2 class="section-title">Popular Work</h2>
+    <div class="categories">
+        <div class="cat-card"><i class="fas fa-hammer"></i><div>Mistri / Construction</div></div>
+        <div class="cat-card"><i class="fas fa-broom"></i><div>Cleaning / Safai</div></div>
+        <div class="cat-card"><i class="fas fa-truck-loading"></i><div>Delivery</div></div>
+        <div class="cat-card"><i class="fas fa-security-guard"></i><div>Security</div></div>
+    </div>
+
+    <div class="job-list">
+        <h2 class="section-title">New Jobs Near You</h2>
+        
+        <div class="job-card">
+            <div class="job-info">
+                <span class="job-tag">DAILY PAY</span>
+                <h3>Warehouse Labour Needed</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Okhla, Delhi | ₹600/Day</p>
+            </div>
+            <div class="btn-group">
+                <a href="tel:+919999999999" class="call-btn"><i class="fas fa-phone"></i> Call Now</a>
+                <a href="#" class="apply-btn">Details</a>
+            </div>
+        </div>
+
+        <div class="job-card">
+            <div class="job-info">
+                <span class="job-tag" style="background:#fff3e0; color:var(--accent);">FULL TIME</span>
+                <h3>Society Security Guard</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Bangalore | ₹16,000/Month</p>
+            </div>
+            <div class="btn-group">
+                <a href="tel:+918888888888" class="call-btn"><i class="fas fa-phone"></i> Call Now</a>
+                <a href="#" class="apply-btn">Details</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="reg-section" id="register">
+        <h2 style="text-align: center; color: var(--primary);">Join Jan Shakti</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Apni details bharein, hum aapko kaam ke liye call karenge.</p>
+        
+        <form>
+            <div class="form-group">
+                <label>Full Name / Poora Naam</label>
+                <input type="text" placeholder="Enter Name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number / Mobile Number</label>
+                <input type="tel" placeholder="10 Digit Mobile Number" required>
+            </div>
+
+            <div class="form-group">
+                <label>Work Type / Kya Kaam Karte Ho?</label>
+                <select required>
+                    <option value="">-- Select Work --</option>
+                    <option>Construction / Mistri</option>
+                    <option>Driver</option>
+                    <option>Cook /Heper</option>
+                    <option>Security Guard</option>
+                    <option>Cleaning / Safai</option>
+                    <option>Labour / Helper</option>
+                    <option>Other / Anya</option>
+                </select>
+            </div>
+
+            <button type="submit" class="apply-btn" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 15px;">
+                Submit My Details
+            </button>
+            <form action="/register" method="POST">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" required> </div>
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required> </div>
+    <div class="form-group">
+        <label>Work Type</label>
+        <select name="work_type" required> <option>Construction</option>
+            <option>Security Guard</option>
+            </select>
+    </div>
+    <button type="submit" class="apply-btn">Submit My Details</button>
+</form>
+        </form>
+    </div>
+
+    <a href="https://wa.me/919999999999" class="help-fab">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer style="text-align: center; padding: 40px; color: #888;">
+        © 2026 Jan Shakti Worker Portal | Pan India Services
+    </footer>
+
+</body>
+</html>
