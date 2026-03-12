@@ -31,8 +31,26 @@ def register():
     
     # Saving it to our SQL table
     save_to_db(worker_name, worker_phone, worker_job)
+    def init_db():
+    conn = sqlite3.connect('jan_shakti.db')
+    cursor = conn.cursor()
+    # This creates the table automatically if it is missing
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Workers (
+            worker_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            full_name TEXT NOT NULL,
+            phone_number TEXT NOT NULL,
+            work_type TEXT
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Call this function before the app starts
+init_db()
     
     return "Dhanyawad! Your details are saved. We will call you soon."
 
 if __name__ == '__main__':
+
     app.run(debug=True)
